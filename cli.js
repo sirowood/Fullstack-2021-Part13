@@ -1,22 +1,12 @@
 require('dotenv').config();
-const { Sequelize, QueryTypes } = require('sequelize');
+const blogsRouter = require('./controllers/blogs');
+const express = require('express');
+const app = express();
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
+app.use(express.json());
+app.use('/api/blogs', blogsRouter);
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server listening on ${PORT}`);
 });
-
-const main = async () => {
-  const blogs = await sequelize.query('SELECT * FROM blogs;', { type: QueryTypes.SELECT });
-  for (const blog of blogs) {
-    console.log(`${blog.author}: '${blog.title}', ${blog.likes} likes`);
-  };
-
-  sequelize.close();
-};
-
-main();

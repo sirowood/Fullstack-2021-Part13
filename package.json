@@ -1,7 +1,30 @@
 {
   "dependencies": {
     "dotenv": "^16.0.1",
+    "express": "^4.18.1",
     "pg": "^8.7.3",
     "sequelize": "^6.21.1"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  },
+  "name": "fullstack-2021-part13",
+  "description": "",
+  "version": "1.0.0",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirowood/Fullstack-2021-Part13.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sirowood/Fullstack-2021-Part13/issues"
+  },
+  "homepage": "https://github.com/sirowood/Fullstack-2021-Part13#readme"
 }
