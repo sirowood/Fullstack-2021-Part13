@@ -12,27 +12,31 @@ router.get('/', async (req, res) => {
   res.json(blogs);
 });
 
-router.post('/', async (req, res) => {
-  const blog = await Blog.create(req.body);
-  res.json(blog);
+router.post('/', async (req, res, next) => {
+  try {
+    const blog = await Blog.create(req.body);
+    res.json(blog);
+  } catch (error) {
+    next(error)
+  }
 });
 
-router.put('/:id', blogFinder, async (req, res) => {
-  if (req.blog) {
+router.put('/:id', blogFinder, async (req, res, next) => {
+  try {
     req.blog.likes = req.body.likes;
     await req.blog.save();
     res.json(req.blog);
-  } else {
-    res.status(404).end();
+  } catch (error) {
+    next(error)
   };
 });
 
-router.delete('/:id', blogFinder, async (req, res) => {
-  if (req.blog) {
+router.delete('/:id', blogFinder, async (req, res, next) => {
+  try {
     await req.blog.destroy();
     res.status(204).end();
-  } else {
-    res.status(404).end();
+  } catch (error) {
+    next(error);
   };
 });
 

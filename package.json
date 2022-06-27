@@ -11,10 +11,10 @@
   "name": "fullstack-2021-part13",
   "description": "",
   "version": "1.0.0",
-  "main": "cli.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon cli.js"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
