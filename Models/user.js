@@ -20,6 +20,11 @@ User.init({
     unique: true,
     allowNull: false,
   },
+
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 }, {
   sequelize,
   underscored: true,
