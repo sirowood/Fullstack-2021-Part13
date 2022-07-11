@@ -19,10 +19,13 @@ User.init({
     type: DataTypes.STRING,
     unique: true,
     allowNull: false,
+    validate: {
+      isEmail: /[\S]+@[\S]+.[\S]+/i,
+    }
   },
 
   password: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(60),
     allowNull: false,
   },
 }, {

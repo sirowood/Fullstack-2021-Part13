@@ -2,13 +2,17 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../Models');
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   const saltRounds = 10;
   const body = req.body;
   const hashedPassword = await bcrypt.hash(body.password, saltRounds);
 
+  try {
   const user = await User.create({ ...body, password: hashedPassword });
   res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  };
 });
 
 router.get('/', async (req, res) => {
