@@ -49,8 +49,11 @@ router.put('/:id', blogFinder, async (req, res, next) => {
   };
 });
 
-router.delete('/:id', blogFinder, async (req, res, next) => {
+router.delete('/:id', tokenExtractor, blogFinder, async (req, res, next) => {
   try {
+    if (req.decodedToken.id !== req.blog.userId) {
+      return res.status(403).json({ error: 'action not allowed' });
+    };
     await req.blog.destroy();
     res.status(204).end();
   } catch (error) {
