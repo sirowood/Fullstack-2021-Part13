@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const { User } = require('../Models');
+const { User, Blog } = require('../Models');
 
 router.post('/', async (req, res, next) => {
   const saltRounds = 10;
@@ -16,7 +16,14 @@ router.post('/', async (req, res, next) => {
 });
 
 router.get('/', async (req, res) => {
-  const users = await User.findAll();
+  const users = await User.findAll({
+    include: {
+      model: Blog,
+      attributes: {
+        exclude: ['userId']
+      }
+    }
+  });
   res.json(users);
 });
 
