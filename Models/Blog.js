@@ -25,10 +25,21 @@ Blog.init({
     type: DataTypes.INTEGER,
     defaultValue: 0,
   },
+  year: {
+    type: DataTypes.INTEGER,
+    validate: {
+      validYear(value) {
+        const givenYear = parseInt(value);
+        if (givenYear < 1991 || givenYear > new Date().getFullYear()) {
+          throw new Error('Year must between 1991 and current year');
+        };
+      },
+    },
+  }
 }, {
   sequelize,
   underscored: true,
-  timestamps: false,
+  timestamps: true,
   modelName: 'blog',
 });
 
