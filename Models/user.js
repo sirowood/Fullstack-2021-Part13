@@ -28,6 +28,11 @@ User.init({
     type: DataTypes.STRING(60),
     allowNull: false,
   },
+
+  disabled: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 }, {
   sequelize,
   underscored: true,
