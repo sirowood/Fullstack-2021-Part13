@@ -9,7 +9,7 @@ const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
 const authorRouter = require('./controllers/authors');
 const readingListRouter = require('./controllers/readingLists');
-const errorHandler = require('./middlewares/errorhandler');
+const { errorHandler } = require('./util/middlewares');
 
 app.use(express.json());
 
